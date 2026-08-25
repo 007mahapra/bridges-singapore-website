@@ -277,6 +277,16 @@
     display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
   }
   .event-feature-copy .btn{margin-top:20px;}
+  .event-feature-copy .event-writeup{
+    margin-top:18px; font-size:1.02rem; line-height:1.7; color:var(--ink-soft);
+  }
+  .event-media-grid{
+    display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:18px; margin-top:24px;
+  }
+  .event-media-grid img{
+    width:100%; height:100%; object-fit:cover; display:block; border-radius:18px;
+    border:1px solid var(--line); box-shadow:var(--shadow); background:var(--cream-deep);
+  }
   .fb-embed-shell{
     background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
     padding:14px; display:flex; justify-content:center; overflow:hidden;
@@ -491,20 +501,32 @@
   </svg>
 
   <!-- 1. Upcoming event -->
+
+  
   <section id="upcoming" class="band-cream-deep">
     <div class="wrap event-feature">
       <div class="event-feature-copy">
         <span class="kicker">What's next</span>
         <h2>Our upcoming event</h2>
         <p style="margin-top:14px;">Here's what we've got coming up. Tap through to the post on Facebook for the full details, RSVP and updates.</p>
+        
+
+        <p class="event-writeup"><strong>“Break the Stress Cycle”</strong> is designed as an accessible and practical one-day wellbeing experience for 3 October 2026, focused on an increasingly important community need — mental wellbeing and everyday stress. The programme will bring together expert-led conversations and experiential sessions covering areas such as stress and nervous-system regulation, nutrition and mood, movement, stillness, present-moment awareness and sustainable wellbeing practices.</p>
+
+        <div class="event-media-grid" aria-label="Event visuals">
+          <img src="media/oct_2026/bridges_mental_welness_flyer_oct2026_1.jpeg" alt="Break the Stress Cycle event poster 1" loading="lazy">
+          <img src="media/oct_2026/bridges_mental_welness_flyer_oct2026_2.jpeg" alt="Break the Stress Cycle event poster 2" loading="lazy">
+        </div>
         <a class="btn btn-outline" href="https://www.facebook.com/Bridgessg/posts/pfbid0a3Txc3Z1HcwXLWz3ZNdSU2uNnnLauBVAoeAH35ipvyNTn1PsUjJNKqsRMzLhhVwhl" target="_blank" rel="noopener">Open post on Facebook</a>
       </div>
-      <div class="fb-embed-shell">
+
+
+      <!-- <div class="fb-embed-shell">
         <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FBridgessg%2Fposts%2Fpfbid0a3Txc3Z1HcwXLWz3ZNdSU2uNnnLauBVAoeAH35ipvyNTn1PsUjJNKqsRMzLhhVwhl&show_text=true&width=500"
           width="500" height="653" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
           allowfullscreen="true" loading="lazy"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -525,11 +547,22 @@
         <h2>A few recent events</h2>
         <p>A handful of moments from our recent gatherings..</p>
       </div>
-      <div class="past-events-grid">
+      <div class="past-events-grid">  
+        <div class="past-event-card">
+          <div class="past-event-label">Ehsaas-E-Sukoon (Music Festival) - 2026</div>
+          <div class="fb-frame-wrap">
+            <!-- Replace href below with the Facebook post URL for this event -->
+
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FBridgessg%2Fposts%2Fpfbid0a3Txc3Z1HcwXLWz3ZNdSU2uNnnLauBVAoeAH35ipvyNTn1PsUjJNKqsRMzLhhVwhl&show_text=true&width=500"
+              width="350" height="470" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+              allowfullscreen="true" loading="lazy"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
         <div class="past-event-card">
           <div class="past-event-label">Bridges Yoga Day - 2026</div>
           <div class="fb-frame-wrap">
-            <!-- Replace href below with the Facebook post URL for this event -->
              
             <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FBridgessg%2Fposts%2Fpfbid0rGRJrEMC83T45KVuqvE6xdtCP6PNU96FXTaroQ8TkToNHztHpc6C3kGJBHprfXyil&show_text=true&width=350"
               width="350" height="470" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
