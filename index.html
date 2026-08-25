@@ -274,17 +274,21 @@
 
   /* ---------- Events ---------- */
   .event-feature{
-    display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
+    display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr); gap:34px; align-items:start;
   }
+  .event-feature-copy{display:flex; flex-direction:column; justify-content:center;}
   .event-feature-copy .btn{margin-top:20px;}
   .event-feature-copy .event-writeup{
     margin-top:18px; font-size:1.02rem; line-height:1.7; color:var(--ink-soft);
   }
+  .event-media-column{
+    display:flex; justify-content:center; align-items:center;
+  }
   .event-media-grid{
-    display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:18px; margin-top:24px;
+    width:100%; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:18px;
   }
   .event-media-grid img{
-    width:100%; height:100%; object-fit:cover; display:block; border-radius:18px;
+    width:100%; display:block; height:auto; object-fit:contain; border-radius:18px;
     border:1px solid var(--line); box-shadow:var(--shadow); background:var(--cream-deep);
   }
   .fb-embed-shell{
@@ -379,6 +383,9 @@
     .about-grid{grid-template-columns:1fr;}
     .about-badge{max-width:280px; margin:0 auto;}
     .event-feature{grid-template-columns:1fr;}
+    .event-media-column{width:100%;}
+    .event-media-grid{grid-template-columns:1fr; max-width:520px; margin:0 auto; gap:16px;}
+    .event-media-grid img{min-height:auto;}
     .connect-grid{grid-template-columns:1fr;}
     .past-events-grid{grid-template-columns:1fr 1fr;}
   }
@@ -392,6 +399,9 @@
     nav.links.open{transform:translateX(0);}
     .menu-toggle{display:block; z-index:41;}
     .nav .btn-primary{display:none;}
+    .event-feature{gap:22px;}
+    .event-media-grid{grid-template-columns:1fr;}
+    .event-media-grid img{width:100%; min-height:auto;}
     .past-events-grid{grid-template-columns:1fr;}
     section{padding:60px 0;}
   }
@@ -509,17 +519,18 @@
         <span class="kicker">What's next</span>
         <h2>Our upcoming event</h2>
         <p style="margin-top:14px;">Here's what we've got coming up. Tap through to the post on Facebook for the full details, RSVP and updates.</p>
-        
 
         <p class="event-writeup"><strong>“Break the Stress Cycle”</strong> is designed as an accessible and practical one-day wellbeing experience for 3 October 2026, focused on an increasingly important community need — mental wellbeing and everyday stress. The programme will bring together expert-led conversations and experiential sessions covering areas such as stress and nervous-system regulation, nutrition and mood, movement, stillness, present-moment awareness and sustainable wellbeing practices.</p>
 
+        <a class="btn btn-outline" href="https://www.facebook.com/Bridgessg/posts/pfbid0a3Txc3Z1HcwXLWz3ZNdSU2uNnnLauBVAoeAH35ipvyNTn1PsUjJNKqsRMzLhhVwhl" target="_blank" rel="noopener">Open post on Facebook</a>
+      </div>
+
+      <div class="event-media-column">
         <div class="event-media-grid" aria-label="Event visuals">
           <img src="media/oct_2026/bridges_mental_welness_flyer_oct2026_1.jpeg" alt="Break the Stress Cycle event poster 1" loading="lazy">
           <img src="media/oct_2026/bridges_mental_welness_flyer_oct2026_2.jpeg" alt="Break the Stress Cycle event poster 2" loading="lazy">
         </div>
-        <a class="btn btn-outline" href="https://www.facebook.com/Bridgessg/posts/pfbid0a3Txc3Z1HcwXLWz3ZNdSU2uNnnLauBVAoeAH35ipvyNTn1PsUjJNKqsRMzLhhVwhl" target="_blank" rel="noopener">Open post on Facebook</a>
       </div>
-
 
       <!-- <div class="fb-embed-shell">
         <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FBridgessg%2Fposts%2Fpfbid0a3Txc3Z1HcwXLWz3ZNdSU2uNnnLauBVAoeAH35ipvyNTn1PsUjJNKqsRMzLhhVwhl&show_text=true&width=500"
