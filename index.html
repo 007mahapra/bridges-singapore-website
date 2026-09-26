@@ -298,14 +298,33 @@
   .initiative-card h3{margin:18px 0 12px; font-size:clamp(1.5rem, 2vw, 1.9rem); line-height:1.2; color:var(--ink); font-family:'Fraunces', serif;}
   .initiative-card p{margin:0; font-size:0.98rem; line-height:1.7; color:var(--ink-soft);}
   .initiative-media-grid{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; padding:0 22px 22px; margin-top:auto;}
-  .initiative-image-slot{display:block; position:relative; min-height:210px; border-radius:18px; border:1px solid rgba(32,51,64,0.12); background-image:var(--placeholder-bg); background-size:cover; background-position:center; background-repeat:no-repeat; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.12); transition:transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease; cursor:pointer; text-decoration:none;}
+  .initiative-image-slot{display:block; position:relative; aspect-ratio:4/3; min-height:180px; border-radius:18px; border:1px solid rgba(32,51,64,0.12); background-image:var(--placeholder-bg); background-size:cover; background-position:center; background-repeat:no-repeat; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.12); transition:transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease; cursor:pointer; text-decoration:none;}
   .initiative-image-slot:hover{transform:translateY(-2px); box-shadow:0 18px 30px -24px rgba(17,30,40,0.42); filter:saturate(1.05);}
   .initiative-image-slot::before{content:""; position:absolute; inset:12px; border:1.5px dashed rgba(32,51,64,0.18); border-radius:12px; background:rgba(255,255,255,0.04);}
   .initiative-doc-link{margin-top:12px;}
   .initiative-doc-link a{display:inline-flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:700; color:var(--blue); text-decoration:none;}
   .initiative-doc-link a:hover{text-decoration:underline;}
+  .lightbox-overlay{
+    position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center;
+    padding:24px; background:rgba(15,20,26,0.82); backdrop-filter:blur(8px);
+  }
+  .lightbox-overlay.open{display:flex;}
+  .lightbox-panel{
+    position:relative; max-width:min(92vw, 980px); width:100%; background:#fff; border-radius:20px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.35); padding:14px; border:1px solid rgba(17,30,40,0.08);
+  }
+  .lightbox-panel img{display:block; width:100%; max-height:78vh; object-fit:contain; border-radius:14px; background:#f5f2ed;}
+  .lightbox-close{position:absolute; top:12px; right:12px; width:34px; height:34px; border:none; border-radius:50%; background:rgba(17,30,40,0.8); color:#fff; cursor:pointer; font-size:1.1rem;}
+  .lightbox-actions{display:flex; justify-content:flex-end; gap:10px; margin-top:12px;}
+  .lightbox-actions a, .lightbox-actions button{
+    display:inline-flex; align-items:center; justify-content:center; border-radius:999px;
+    padding:9px 16px; font-weight:700; text-decoration:none; font-size:0.8rem;
+  }
+  .lightbox-actions a{background:var(--ink); color:#fff;}
+  .lightbox-actions button{background:transparent; border:1px solid rgba(17,30,40,0.12); color:var(--ink); cursor:pointer;}
   @media (max-width: 980px){.initiative-grid{grid-template-columns:1fr 1fr;}}
-  @media (max-width: 760px){.initiative-grid{grid-template-columns:1fr;}}
+  @media (max-width: 760px){.initiative-grid{grid-template-columns:1fr;} .initiative-image-slot{aspect-ratio:5/4; min-height:160px;}}
+  @media (max-width: 460px){.initiative-media-grid{grid-template-columns:1fr;}.initiative-image-slot{aspect-ratio:16/11; min-height:200px;}}
 
   /* ---------- Recurring activities accordion ---------- */
   .recurring-wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
@@ -1059,6 +1078,17 @@
   </div>
 </footer>
 
+<div class="lightbox-overlay" id="imageLightbox" aria-hidden="true">
+  <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="lightbox-close" type="button" aria-label="Close image">×</button>
+    <img id="lightboxImage" src="" alt="Selected photo preview">
+    <div class="lightbox-actions">
+      <button type="button" class="lightbox-close-action">Close</button>
+      <a id="lightboxOpenLink" href="#" target="_blank" rel="noopener noreferrer">Open in new tab</a>
+    </div>
+  </div>
+</div>
+
 <script>
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -1095,6 +1125,53 @@
         button.setAttribute('aria-expanded', 'true');
       }
     });
+  });
+
+  // Image lightbox for initiative and impact cards
+  const lightbox = document.getElementById('imageLightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxLink = document.getElementById('lightboxOpenLink');
+  const lightboxCloseButtons = document.querySelectorAll('.lightbox-close, .lightbox-close-action');
+
+  const openLightbox = (src, url) => {
+    if (!lightbox || !lightboxImage || !lightboxLink) return;
+    lightboxImage.src = src;
+    lightboxImage.alt = 'Preview image';
+    lightboxLink.href = url || src;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox || !lightboxImage) return;
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImage.src = '';
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.initiative-image-slot').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const src = link.getAttribute('href');
+      if (!src) return;
+      event.preventDefault();
+      openLightbox(src, src);
+    });
+  });
+
+  lightboxCloseButtons.forEach((button) => {
+    button.addEventListener('click', closeLightbox);
+  });
+
+  lightbox && lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lightbox && lightbox.classList.contains('open')) {
+      closeLightbox();
+    }
   });
 
   // Mobile menu
