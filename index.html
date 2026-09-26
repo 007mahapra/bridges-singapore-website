@@ -119,17 +119,32 @@
   .brand-name{font-family:'Fraunces', serif; font-weight:700; font-size:1.25rem; color:var(--ink);}
   .brand-name small{display:block; font-family:'Plus Jakarta Sans', sans-serif; font-weight:600; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--orange-deep); margin-top:1px;}
 
-  nav.links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
-  nav.links a{
+  nav.links{display:flex; gap:28px; list-style:none; margin:0; padding:0; align-items:center;}
+  nav.links a,
+  .nav-dropdown-toggle{
     text-decoration:none; font-weight:600; font-size:0.92rem; color:var(--ink-soft);
-    position:relative; padding:4px 0;
+    position:relative; padding:4px 0; background:none; border:none; cursor:pointer;
+    font-family:'Plus Jakarta Sans', sans-serif;
   }
-  nav.links a::after{
+  nav.links a::after,
+  .nav-dropdown-toggle::after{
     content:""; position:absolute; left:0; bottom:-2px; width:0; height:2px;
     background:var(--orange); transition:width 0.25s ease;
   }
-  nav.links a:hover{color:var(--ink);}
-  nav.links a:hover::after{width:100%;}
+  nav.links a:hover,
+  .nav-dropdown-toggle:hover{color:var(--ink);}
+  nav.links a:hover::after,
+  .nav-dropdown-toggle:hover::after,
+  .nav-dropdown.open > .nav-dropdown-toggle::after{width:100%;}
+  .nav-dropdown{position:relative;}
+  .nav-dropdown-menu{
+    position:absolute; top:calc(100% + 12px); left:0; min-width:180px;
+    display:none; flex-direction:column; gap:8px; padding:12px 14px; border-radius:14px;
+    background:rgba(255,255,255,0.98); border:1px solid rgba(32,51,64,0.09);
+    box-shadow:0 18px 36px -24px rgba(17,30,40,0.38);
+  }
+  .nav-dropdown-menu a{padding:8px 0; white-space:nowrap;}
+  .nav-dropdown.open .nav-dropdown-menu{display:flex;}
 
   .btn{
     display:inline-flex; align-items:center; gap:8px;
@@ -272,6 +287,70 @@
   }
   .bridges-acronym span b{color:var(--orange-deep); font-family:'Fraunces',serif; font-size:1rem; margin-right:2px;}
 
+  /* ---------- Initiative showcase ---------- */
+  .initiative-showcase{background:linear-gradient(180deg, rgba(243,129,56,0.04), rgba(255,255,255,0.4)); padding-top:12px;}
+  .initiative-grid{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:26px; margin-top:10px;}
+  .initiative-card{background:#fff; border:1px solid rgba(32,51,64,0.12); border-radius:22px; box-shadow:0 18px 38px -24px rgba(17,30,40,0.35); overflow:hidden; display:flex; flex-direction:column; min-height:100%; transition:transform 0.25s ease, box-shadow 0.25s ease;}
+  .initiative-card:hover{transform:translateY(-4px); box-shadow:0 22px 48px -24px rgba(17,30,40,0.42);}
+  .initiative-card.highlight{background:linear-gradient(180deg, rgba(242,129,29,0.08), rgba(255,255,255,0.96)); border-color:rgba(242,129,29,0.28);}
+  .initiative-card-header{padding:22px 22px 10px;}
+  .initiative-label{display:inline-block; padding:7px 11px; border-radius:999px; font-size:0.68rem; font-weight:800; letter-spacing:0.13em; text-transform:uppercase; background:rgba(46,109,164,0.08); color:var(--blue); border:1px solid rgba(46,109,164,0.12);}
+  .initiative-card h3{margin:18px 0 12px; font-size:clamp(1.5rem, 2vw, 1.9rem); line-height:1.2; color:var(--ink); font-family:'Fraunces', serif;}
+  .initiative-card p{margin:0; font-size:0.98rem; line-height:1.7; color:var(--ink-soft);}
+  .initiative-media-grid{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; padding:0 22px 22px; margin-top:auto;}
+  .initiative-image-slot{display:block; position:relative; min-height:210px; border-radius:18px; border:1px solid rgba(32,51,64,0.12); background-image:var(--placeholder-bg); background-size:cover; background-position:center; background-repeat:no-repeat; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.12); transition:transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease; cursor:pointer; text-decoration:none;}
+  .initiative-image-slot:hover{transform:translateY(-2px); box-shadow:0 18px 30px -24px rgba(17,30,40,0.42); filter:saturate(1.05);}
+  .initiative-image-slot::before{content:""; position:absolute; inset:12px; border:1.5px dashed rgba(32,51,64,0.18); border-radius:12px; background:rgba(255,255,255,0.04);}
+  .initiative-doc-link{margin-top:12px;}
+  .initiative-doc-link a{display:inline-flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:700; color:var(--blue); text-decoration:none;}
+  .initiative-doc-link a:hover{text-decoration:underline;}
+  @media (max-width: 980px){.initiative-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width: 760px){.initiative-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Recurring activities accordion ---------- */
+  .recurring-wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+  .recurring-section{background:linear-gradient(180deg, rgba(46,109,164,0.04), rgba(255,255,255,0.35)); padding:10px 0 24px;}
+  .recurring-accordion{display:grid; gap:14px; margin-top:18px;}
+  .accordion-item{background:#fff; border:1px solid rgba(30,42,56,0.1); border-radius:18px; box-shadow:0 16px 36px -26px rgba(30,42,56,0.32); overflow:hidden;}
+  .accordion-toggle{width:100%; background:transparent; border:none; cursor:pointer; padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; text-align:left; font:inherit; color:var(--ink);}
+  .accordion-toggle h3{font-size:1.25rem; color:var(--ink); font-family:'Fraunces',serif;}
+  .accordion-toggle .plus{display:inline-flex; width:30px; height:30px; border-radius:50%; background:rgba(242,129,29,0.12); color:var(--orange-deep); align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; transition:transform 0.2s ease;}
+  .accordion-item.open .accordion-toggle .plus{transform:rotate(45deg);}
+  .accordion-content{max-height:0; overflow:hidden; transition:max-height 0.35s ease, padding 0.35s ease; padding:0 22px;}
+  .accordion-item.open .accordion-content{max-height:400px; padding:0 22px 22px;}
+  .accordion-content ul{margin:0; padding-left:22px; display:grid; gap:10px; color:var(--ink-soft);}
+  .accordion-content li{line-height:1.7;}
+  .accordion-content strong{color:var(--ink);}
+
+  /* ---------- Partnerships ---------- */
+  .partnership-section{padding:18px 0 28px; background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(46,109,164,0.02));}
+  .partners-grid{display:flex; flex-wrap:wrap; gap:16px; margin-top:18px;}
+  .partner-pill{
+    display:inline-flex; align-items:center; justify-content:center; min-height:58px;
+    padding:14px 18px; border-radius:999px; border:1px solid rgba(32,51,64,0.12);
+    background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(247,242,236,0.9));
+    box-shadow:0 16px 30px -26px rgba(17,30,40,0.4);
+    color:var(--ink); font-weight:700; text-align:center;
+  }
+  .contact-panel{
+    margin-top:18px; background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.07);
+    border-radius:18px; padding:18px 16px; box-shadow:none;
+  }
+  .contact-panel-header{display:flex; flex-direction:column; gap:6px; margin-bottom:14px;}
+  .contact-panel-header .kicker{color:var(--gold); font-size:0.7rem; letter-spacing:0.12em;}
+  .contact-panel-header h3{margin:0; font-size:1.2rem; color:#fff; font-family:'Fraunces',serif;}
+  .contact-grid{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px;}
+  .contact-card{
+    display:flex; flex-direction:column; gap:6px; padding:14px 12px; border-radius:14px;
+    text-decoration:none; color:#fff; background:rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.06); transition:transform 0.2s ease, border-color 0.2s ease;
+  }
+  .contact-card:hover{transform:translateY(-1px); border-color:rgba(255,255,255,0.14);}
+  .contact-label{font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(251,245,236,0.7); font-weight:800;}
+  .contact-card strong{font-size:0.9rem; line-height:1.5; color:#fff; font-weight:700;}
+  @media (max-width: 900px){.contact-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}}
+  @media (max-width: 560px){.contact-grid{grid-template-columns:1fr;}}
+
   /* ---------- Events ---------- */
   .event-feature{
     display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr); gap:34px; align-items:start;
@@ -345,17 +424,16 @@
 
   /* ---------- Stay connected ---------- */
   .connect-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;
+    display:grid; grid-template-columns:1fr 1.1fr; gap:28px; align-items:center;
   }
-  .connect-copy .btn{margin-top:24px;}
-  .connect-stats{display:flex; gap:30px; margin-top:30px;}
-  .connect-stats div b{display:block; font-family:'Fraunces',serif; font-size:1.6rem; color:var(--gold);}
-  .connect-stats div span{font-size:0.8rem; color:rgba(251,245,236,0.65);}
+  .connect-copy{padding:8px 0;}
+  .connect-copy h2{margin-bottom:10px;}
+  .connect-copy .btn{margin-top:18px;}
   .fb-page-shell{
-    background:#fff; border-radius:var(--radius); padding:12px; box-shadow:0 20px 50px -16px rgba(0,0,0,0.45);
-    display:flex; justify-content:center;
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px; padding:10px; box-shadow:none; display:flex; justify-content:center;
   }
-  .fb-page-shell iframe{max-width:100%; border-radius:8px;}
+  .fb-page-shell iframe{max-width:100%; border-radius:12px;}
 
   /* ---------- Footer ---------- */
   footer{
@@ -427,12 +505,20 @@
     </a>
     <nav class="links" id="navLinks">
       <a href="#about">About</a>
-      <a href="#upcoming">Upcoming</a>
-      <a href="#past-events">Past Events</a>
-      <a href="#gallery">Gallery</a>
+      <a href="#initiatives">Initiatives</a>
+      <a href="#impacts">Impacts</a>
+      <a href="#bridges-upcoming-event">Upcoming</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Events</button>
+        <div class="nav-dropdown-menu">
+          <a href="#past-events">Recent Events</a>
+          <a href="#gallery">Gallery</a>
+        </div>
+      </div>
       <a href="#connect">Connect</a>
     </nav>
-    <a class="btn btn-primary" href="https://www.facebook.com/Bridgessg/" target="_blank" rel="noopener">Follow on Facebook</a>
+    <a class="btn btn-primary" href="https://www.facebook.com/Bridgessg/" target="_blank" rel="noopener"> Facebook</a>
+    <a class="btn btn-primary" href="https://www.instagram.com/bridges.sg" target="_blank" rel="noopener"> Instagram</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -452,7 +538,7 @@
         <h1>Building relationships,<span class="line2">inspiring dynamism &amp;</span><span class="accent-italic">generating empathy.</span></h1>
         <p class="hero-tagline">"Building Relationships, Inspiring Dynamism and Generating Empathy Society" — that's the B.R.I.D.G.E.S in our name, and the reason we exist.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#upcoming">See upcoming event</a>
+          <a class="btn btn-primary" href="#bridges-upcoming-event">See upcoming event</a>
           <a class="btn btn-facebook" href="https://www.facebook.com/Bridgessg/" target="_blank" rel="noopener">
             Visit our Facebook page
           </a>
@@ -484,7 +570,7 @@
         <img src="data:image/jpeg;base64,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" alt="Bridges Singapore logo">
       </div>
       <div class="about-copy">
-        <span class="kicker">About Us</span>
+        <span class="kicker">Our Vision</span>
         <h2>Building Bridges of Humanity</h2>
         <p style="margin-top:18px;">At Bridges, we believe that meaningful communities are built through connection, compassion, and service.</p>
         <p>We bring together people from different cultures, races, backgrounds, and walks of life, creating opportunities to connect through social gatherings, educational workshops, sports, wellness programmes, and meaningful volunteer initiatives.</p>
@@ -496,6 +582,23 @@
           <span><b>G</b>enerating</span>
           <span><b>E</b>mpathy</span>
           <span><b>S</b>ociety</span>
+        </div>
+
+        <div style="margin-top:34px; padding-top:22px; border-top:1px solid rgba(32,51,64,0.12);">
+          <span class="kicker">About us</span>
+          <h2>Our story</h2>
+          <p style="margin-top:18px;">Bridges Singapore was <b>established in 2015</b>. The organisation is a registered society operating under the official Unique Entity Number <b>(UEN) T15SS0110K</b>. The society functions under the motto <b>"Building Relationships, Inspiring Dynamism and Generating Empathy Society" (BRIDGES)</b>. Its core mission is to facilitate meaningful interaction, communication, and goodwill across Singapore’s diverse cultural and racial landscape. From a strategic perspective, the society focuses on <b>promoting social integration and community resilience, particularly by assisting foreigners in navigating their orientation into Singaporean society</b>. By fostering a spirit of volunteerism and mutual understanding, Bridges Singapore seeks to build a more cohesive and inclusive community.</p>
+        </div>
+
+        <div style="margin-top:34px; padding-top:22px; border-top:1px solid rgba(32,51,64,0.12);">
+          <span class="kicker">Governance</span>
+          <h2>Leadership &amp; Key Personnel</h2>
+          <p style="margin-top:18px;">The society is led by a dedicated team of <b>150+</b> volunteers and coordinators who manage its diverse social and charitable portfolios. The leadership structure and functional leads are as follows:</p>
+          <div class="bridges-acronym" style="margin-top:16px;">
+            <span><b>President</b><br>S. M. Singh</span>
+            <span><b>Vice President</b><br>Himanshu Motial</span>
+            <span><b>Secretary</b><br>Navroop Sachdeva</span>
+          </div>
         </div>
       </div>
     </div>
@@ -510,6 +613,237 @@
     <circle cx="1050" cy="30" r="6" fill="var(--gold)"/>
   </svg>
 
+  <section class="initiative-showcase" id="initiatives" aria-labelledby="initiative-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Initiatives</span>
+        <h2 id="initiative-heading">Our flagship initiatives</h2>
+        <p>Each programme reflects our commitment to connection, care, culture, and community.</p>
+      </div>
+
+      <div class="initiative-grid">
+        <article class="initiative-card highlight">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Volunteering</span>
+            <h3>Volunteer Outreach</h3>
+            <p>Community-led support programmes that bring people together through donations, outreach, and practical care for those in need.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/initiative/initiative_1/initiative1.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Open Volunteer Outreach image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(242,129,29,0.10), rgba(255,255,255,0.18)), url('media/initiative/initiative_1/initiative1.jpeg');"></a>
+            <a class="initiative-image-slot" href="media/initiative/initiative_1/initiative2.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Open Volunteer Outreach image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(46,109,164,0.08), rgba(255,255,255,0.18)), url('media/initiative/initiative_1/initiative2.jpeg');"></a>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Health &amp; Wellbeing</span>
+            <h3>Wellness &amp; Sports</h3>
+            <p>Wellbeing-focused sessions including yoga, movement, and healthy lifestyle activities designed for families and young adults.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/initiative/initiative_2/initiative1.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Wellness and Sports image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(122,174,109,0.10), rgba(255,255,255,0.18)), url('media/initiative/initiative_2/initiative1.jpg');"></a>
+            <a class="initiative-image-slot" href="media/initiative/initiative_2/initiative2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Wellness and Sports image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(201,169,87,0.10), rgba(255,255,255,0.18)), url('media/initiative/initiative_2/initiative2.jpg');"></a>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Cultural Inclusion</span>
+            <h3>Cultural Celebration</h3>
+            <p>Festivals, performances, and community gatherings that celebrate diversity, tradition, and belonging through shared experiences.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/initiative/initiative_3/initiative1.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Cultural Celebration image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(210,92,68,0.10), rgba(255,255,255,0.18)), url('media/initiative/initiative_3/initiative1.jpg');"></a>
+            <a class="initiative-image-slot" href="media/initiative/initiative_3/initiative1.png" target="_blank" rel="noopener noreferrer" aria-label="Open Cultural Celebration image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(93,115,170,0.10), rgba(255,255,255,0.18)), url('media/initiative/initiative_3/initiative1.png');"></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="initiative-showcase" id="impacts" aria-labelledby="impact-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Our Social Impact</span>
+        <h2 id="impact-heading">Differences</h2>
+        <p>Bridges Singapore has delivered high-impact support across emergency relief, digital awareness, youth development, environmental action, and cultural inclusion.</p>
+      </div>
+
+      <div class="initiative-grid">
+        <article class="initiative-card highlight">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Impact 01</span>
+            <h3>Oxygen Concentrator Drive</h3>
+            <p>During the COVID-19 crisis in India, Bridges used GoGetFunding to dispatch 104 oxygen concentrators, reaching 150 units in total to support critical medical needs.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/impacts/impact1/184373542_4625161634167176_1958728180867611222_n.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Oxygen Concentrator Drive image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(242,129,29,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact1/184373542_4625161634167176_1958728180867611222_n.jpg');"></a>
+            <a class="initiative-image-slot" href="media/impacts/impact1/183112581_4619166191433387_7798578701865983223_n.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Oxygen Concentrator Drive image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(46,109,164,0.08), rgba(255,255,255,0.18)), url('media/impacts/impact1/183112581_4619166191433387_7798578701865983223_n.jpg');"></a>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Impact 02</span>
+            <h3>Migrant Workers Centre Support</h3>
+            <p>Following the appreciation letter dated 17 July 2020, Bridges supported migrant workers by donating over 100,000 items, benefiting approximately 370,000 workers during the Circuit Breaker.</p>
+            <div class="initiative-doc-link"><a href="media/impacts/impact2/Appreciation_Letter_Migrants_Workers_Centre_(MWC)_Bridges_Singapore.pdf" target="_blank" rel="noopener">View appreciation letter (PDF)</a></div>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/impacts/impact2/778509e6-cc89-4b08-8f46-1199382f1cd4.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Migrant Workers Centre Support image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(122,174,109,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact2/778509e6-cc89-4b08-8f46-1199382f1cd4.jpg');"></a>
+            <a class="initiative-image-slot" href="media/impacts/impact2/d2fce8bc-1bdc-4118-919e-96a5f1a75bfd.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Migrant Workers Centre Support image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(201,169,87,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact2/d2fce8bc-1bdc-4118-919e-96a5f1a75bfd.jpg');"></a>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Impact 03</span>
+            <h3>Digital Safety Awareness</h3>
+            <p>In July 2021, Bridges organised free online learning sessions on personal data protection, passwords, and digital safety for the wider community.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/impacts/impact3/Screenshot 2026-09-26 140225.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Digital Safety Awareness image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(210,92,68,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact3/Screenshot 2026-09-26 140225.jpg');"></a>
+            <a class="initiative-image-slot" href="media/impacts/impact3/Screenshot 2026-09-26 140333.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Digital Safety Awareness image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(93,115,170,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact3/Screenshot 2026-09-26 140333.jpg');"></a>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Impact 04</span>
+            <h3>National Day Gratitude Cards</h3>
+            <p>In support of #SGTogether, Bridges created “Thank You” cards for frontline workers as a community gesture of appreciation and solidarity.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/impacts/impact4/469944787_9696869683662987_3147831029657821785_n.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open National Day Gratitude Cards image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(78,148,134,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact4/469944787_9696869683662987_3147831029657821785_n.jpg');"></a>
+            <a class="initiative-image-slot" href="media/impacts/impact4/6ecd5167-0898-4257-a561-8bf295a2f652.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open National Day Gratitude Cards image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(244,168,37,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact4/6ecd5167-0898-4257-a561-8bf295a2f652.jpg');"></a>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Impact 05</span>
+            <h3>Project Amrit</h3>
+            <p>On 21 February 2026, volunteers took part in a East Coast Park beach cleanup to promote environmental care and cleaner public spaces for the community. They tied up with local organization <a href="https://greenerplus.org/" target="_blank" rel="noopener">Greener Plus</a> to maximize the impact of their efforts.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/impacts/impact5/4b61cc1e-4429-4731-b0e4-d701f413d587.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Project Amrit image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(124,179,66,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact5/4b61cc1e-4429-4731-b0e4-d701f413d587.jpg');"></a>
+            <a class="initiative-image-slot" href="media/impacts/impact5/1c9cf2d6-49c1-4e4a-a8da-bb993aa21b45.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Project Amrit image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(46,109,164,0.08), rgba(255,255,255,0.18)), url('media/impacts/impact5/1c9cf2d6-49c1-4e4a-a8da-bb993aa21b45.jpg');"></a>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Impact 06</span>
+            <h3>Youth Mentorship Programme</h3>
+            <p>Led by counsellor Ms. Navroop Sood, this programme supports youth aged 12–20 with guidance, emotional resilience, and future-planning support.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/impacts/impact6/107144583_3729375580412457_1563292625399335157_n.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Youth Mentorship Programme image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(228,87,46,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact6/107144583_3729375580412457_1563292625399335157_n.jpg');"></a>
+            <div class="initiative-image-slot" style="--placeholder-bg: linear-gradient(135deg, rgba(46,109,164,0.08), rgba(255,255,255,0.18));"></div>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Impact 07</span>
+            <h3>Beach Cleaning Efforts</h3>
+            <p>Through regular cleanups at East Coast Park in partnership with the Lions Club, Bridges supports cleaner public spaces and community stewardship.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/impacts/impact7/6a3dbbb1-16e9-4ccb-862e-50680ef37ca2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Beach Cleaning Efforts image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(87,146,189,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact7/6a3dbbb1-16e9-4ccb-862e-50680ef37ca2.jpg');"></a>
+            <a class="initiative-image-slot" href="media/impacts/impact7/08c1f139-97d6-4841-88f8-7ccfe444e6d3.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Beach Cleaning Efforts image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(124,179,66,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact7/08c1f139-97d6-4841-88f8-7ccfe444e6d3.jpg');"></a>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Impact 08</span>
+            <h3>Old Clothes &amp; Book Donations</h3>
+            <p>Bridges runs a recurring collection of used books, clothes, and toys, redistributing them to Foreign Domestic Workers and work permit holders.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/impacts/impact8/516062459_24865735373016504_735778110810489718_n.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Old Clothes and Book Donations image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(196,146,64,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact8/516062459_24865735373016504_735778110810489718_n.jpg');"></a>
+            <a class="initiative-image-slot" href="media/impacts/impact8/515500915_24865735563016485_7653627732821344611_n.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Old Clothes and Book Donations image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(90,120,90,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact8/515500915_24865735563016485_7653627732821344611_n.jpg');"></a>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Impact 09</span>
+            <h3>International Yoga Day</h3>
+            <p>At Marina Barrage on 20 June 2026, participants joined a yoga session, wellness games, and a calming community gathering close to 60 attendees.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/impacts/impact9/b03f2c97-a246-42e4-be63-b0e885b7fb0b.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open International Yoga Day image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(242,129,29,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact9/b03f2c97-a246-42e4-be63-b0e885b7fb0b.jpg');"></a>
+            <a class="initiative-image-slot" href="media/impacts/impact9/75105996-b82e-4243-8f8f-c789b750b69f.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open International Yoga Day image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(74,96,148,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact9/75105996-b82e-4243-8f8f-c789b750b69f.jpg');"></a>
+          </div>
+        </article>
+
+        <article class="initiative-card">
+          <div class="initiative-card-header">
+            <span class="initiative-label">Impact 10</span>
+            <h3>Ehsaas-E-Sukoon</h3>
+            <p>Held on 1 August 2026 at Sindhu House, this devotional jamming evening brought together contemporary artists and instrumentalists for a soulful experience.</p>
+          </div>
+          <div class="initiative-media-grid">
+            <a class="initiative-image-slot" href="media/impacts/impact10/Screenshot 2026-09-26 141332.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Ehsaas-E-Sukoon image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(148,100,180,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact10/Screenshot 2026-09-26 141332.jpg');"></a>
+            <a class="initiative-image-slot" href="media/impacts/impact10/Screenshot 2026-09-26 141522.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Ehsaas-E-Sukoon image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(235,157,74,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact10/Screenshot 2026-09-26 141522.jpg');"></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="recurring-section" aria-labelledby="recurring-activities-heading">
+    <div class="recurring-wrap">
+      <div class="section-head">
+        <span class="kicker">Recurring activities</span>
+        <h2 id="recurring-activities-heading">Our ongoing community rhythm</h2>
+        <p>The core of Bridges’ engagement lies in frequent social, wellness, and environmental activities that keep our community connected.</p>
+      </div>
+
+      <div class="recurring-accordion">
+        <div class="accordion-item open">
+          <button class="accordion-toggle" type="button" aria-expanded="true">
+            <h3>Sports &amp; Fitness</h3>
+            <span class="plus">+</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><strong>Biking:</strong> Group excursions and rides at Coney Island.</li>
+              <li><strong>Youth Sports:</strong> Active participation in the JFA Uniqlo Kids Soccer programme.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-toggle" type="button" aria-expanded="false">
+            <h3>Environmental Stewardship</h3>
+            <span class="plus">+</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><strong>Each One Plant One Drive:</strong> A tree and plant plantation initiative driven by the goal of achieving clean air and a green Singapore. Key locations include D’Leedon Condominium and the Singapore Sindhi Association (SSA).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-toggle" type="button" aria-expanded="false">
+            <h3>Cultural &amp; Culinary</h3>
+            <span class="plus">+</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><strong>Cook Shook:</strong> A popular series of recipe-sharing classes and culinary demonstrations led by members.</li>
+              <li><strong>Festive Celebrations:</strong> Periodic social gatherings to celebrate major festivals, fostering communal harmony and cultural exchange.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 1. Upcoming event -->
 
   
@@ -520,7 +854,7 @@
         <h2>Our upcoming event</h2>
         <p style="margin-top:14px;">Here's what we've got coming up. Stay Tuned to our Facebook Page for the full details, RSVP and updates which will be shared soon.</p>
 
-        <p class="event-writeup"><strong>“Break the Stress Cycle”</strong> is designed as an accessible and practical one-day wellbeing experience for 28 November 2026, focused on an increasingly important community need — mental wellbeing and everyday stress. The programme will bring together expert-led conversations and experiential sessions covering areas such as stress and nervous-system regulation, nutrition and mood, movement, stillness, present-moment awareness and sustainable wellbeing practices.</p>
+        <p class="event-writeup"><strong>“Break the Stress Cycle”</strong> is designed as an accessible and practical one-day wellbeing experience for 05 December 2026, focused on an increasingly important community need — mental wellbeing and everyday stress. The programme will bring together expert-led conversations and experiential sessions covering areas such as stress and nervous-system regulation, nutrition and mood, movement, stillness, present-moment awareness and sustainable wellbeing practices.</p>
 
         <!-- <a class="btn btn-outline" href="https://www.facebook.com/Bridgessg/posts/pfbid0a3Txc3Z1HcwXLWz3ZNdSU2uNnnLauBVAoeAH35ipvyNTn1PsUjJNKqsRMzLhhVwhl" target="_blank" rel="noopener">Open post on Facebook</a> -->
       </div>
@@ -639,25 +973,69 @@
     <circle cx="1050" cy="30" r="6" fill="var(--blue)"/>
   </svg>
 
+  <section class="partnership-section" aria-labelledby="partnerships-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Collaboration &amp; partnerships</span>
+        <h2 id="partnerships-heading">Working with trusted community partners</h2>
+        <p>Bridges Singapore leverages strategic collaborations with established entities to maximise the efficacy of its community programmes.</p>
+      </div>
+
+      <div class="partners-grid">
+        <div class="partner-pill">Lions Club</div>
+        <div class="partner-pill">Community Centres</div>
+        <div class="partner-pill">Migrant Workers Centre (MWC)</div>
+        <div class="partner-pill">Singapore Sindhi Association (SSA)</div>
+        <div class="partner-pill">Big At Heart</div>
+        <div class="partner-pill">Maharashtra Mandal</div>
+        <div class="partner-pill">Singapore Gujarati Society</div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- 4. Stay connected -->
   <section id="connect" class="band-ink">
     <div class="wrap connect-grid">
       <div class="connect-copy">
-        <span class="kicker">While we build</span>
-        <h2>Stay connected with us on Facebook</h2>
-        <p style="margin-top:14px;">Our brand new site is on its way. Until then, Facebook is where we post events, photos and updates first — follow along so you don't miss anything.</p>
+        <span class="kicker">Stay connected</span>
+        <h2>Follow our updates on Facebook</h2>
+        <p style="margin-top:10px;">See our latest events, photos and community moments as they happen.</p>
         <a class="btn btn-facebook" href="https://www.facebook.com/Bridgessg/" target="_blank" rel="noopener">Follow Bridges Singapore</a>
-        <div class="connect-stats">
-          <div><b>Est.</b><span>Singapore community</span></div>
-          <div><b>Live</b><span>Updates on Facebook</span></div>
-          <div><b>Soon</b><span>New website</span></div>
-        </div>
       </div>
       <div class="fb-page-shell">
         <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBridgessg&tabs=timeline&width=480&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
           width="480" height="620" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
           allowfullscreen="true" loading="lazy"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="contact-panel">
+        <div class="contact-panel-header">
+          <span class="kicker">Official contact channels</span>
+          <h3>Digital and social media</h3>
+        </div>
+
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:bridges.sg1@gmail.com">
+            <span class="contact-label">Email</span>
+            <strong>bridges.sg1@gmail.com</strong>
+          </a>
+          <a class="contact-card" href="https://bridges.com.sg/" target="_blank" rel="noopener">
+            <span class="contact-label">Website</span>
+            <strong>bridges.com.sg</strong>
+          </a>
+          <a class="contact-card" href="https://www.facebook.com/Bridgessg" target="_blank" rel="noopener">
+            <span class="contact-label">Facebook</span>
+            <strong>@Bridgessg</strong>
+          </a>
+          <a class="contact-card" href="https://www.instagram.com/bridges.sg" target="_blank" rel="noopener">
+            <span class="contact-label">Instagram</span>
+            <strong>@bridges.sg</strong>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -677,7 +1055,6 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Bridges Singapore. Building Relationships, Inspiring Dynamism and Generating Empathy Society.</span>
-      <span>Site launching soon.</span>
     </div>
   </div>
 </footer>
@@ -701,6 +1078,25 @@
     try { localStorage.setItem('bridgesBannerDismissed', '1'); } catch (e) {}
   });
 
+  // Recurring activities accordion
+  document.querySelectorAll('.accordion-toggle').forEach((button) => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+
+      document.querySelectorAll('.accordion-item').forEach((accordionItem) => {
+        accordionItem.classList.remove('open');
+        const toggle = accordionItem.querySelector('.accordion-toggle');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
   // Mobile menu
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
@@ -710,6 +1106,21 @@
   });
   navLinks && navLinks.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  const dropdown = document.querySelector('.nav-dropdown');
+  const dropdownToggle = document.querySelector('.nav-dropdown-toggle');
+  dropdownToggle && dropdownToggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const isOpen = dropdown.classList.toggle('open');
+    dropdownToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  document.addEventListener('click', (event) => {
+    if (!dropdown) return;
+    if (!dropdown.contains(event.target)) {
+      dropdown.classList.remove('open');
+      dropdownToggle && dropdownToggle.setAttribute('aria-expanded', 'false');
+    }
   });
 
   // Bridge divider draw-in on scroll
