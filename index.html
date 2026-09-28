@@ -385,9 +385,33 @@
   .event-media-grid{
     width:100%; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:18px;
   }
+  .event-media-grid a{
+    display:block; width:100%; text-decoration:none;
+  }
   .event-media-grid img{
     width:100%; display:block; height:auto; object-fit:contain; border-radius:18px;
     border:1px solid var(--line); box-shadow:var(--shadow); background:var(--cream-deep);
+  }
+  .register-highlight{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    width:fit-content; margin-top:22px; padding:12px 18px; border-radius:999px;
+    background:linear-gradient(90deg, #fff4b8 0%, #ffd77a 40%, #ffc857 100%);
+    border:1px solid rgba(132,81,0,0.18); color:#5b3700; font-size:0.78rem;
+    font-weight:800; letter-spacing:0.12em; text-transform:uppercase;
+    text-decoration:none; box-shadow:0 16px 28px -18px rgba(124,82,0,0.55);
+    position:relative; overflow:hidden; animation:registerPulse 1.5s ease-in-out infinite;
+  }
+  .register-highlight::before{
+    content:""; position:absolute; inset:0; background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    transform:translateX(-140%); animation:registerSweep 2.4s ease-in-out infinite;
+  }
+  @keyframes registerPulse{
+    0%, 100% { transform:translateY(0); box-shadow:0 0 0 rgba(255,196,87,0.35), 0 16px 28px -18px rgba(124,82,0,0.55); }
+    50% { transform:translateY(-2px); box-shadow:0 0 0 8px rgba(255,196,87,0.18), 0 18px 36px -18px rgba(124,82,0,0.7); }
+  }
+  @keyframes registerSweep{
+    0% { transform:translateX(-140%); }
+    55%, 100% { transform:translateX(140%); }
   }
   .fb-embed-shell{
     background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
@@ -510,7 +534,7 @@
 <div class="launch-banner" id="launchBanner">
   <div class="launch-banner-inner">
     <span class="pulse-dot" aria-hidden="true"></span>
-    <span>Our brand new website is launching soon — stay tuned, and find us on Facebook in the meantime.</span>
+    <span>Upcoming : Break the Stress Cycle - Dec 05 2026 - <a href="https://bit.ly/bridges_wellness" target="_blank" rel="noopener noreferrer" style="color:#fff; text-decoration:underline; font-weight:800;">Register now →</a></span>
     <button class="launch-banner-close" id="bannerClose" aria-label="Dismiss announcement">✕</button>
   </div>
 </div>
@@ -606,7 +630,8 @@
         <div style="margin-top:34px; padding-top:22px; border-top:1px solid rgba(32,51,64,0.12);">
           <span class="kicker">About us</span>
           <h2>Our story</h2>
-          <p style="margin-top:18px;">Bridges Singapore was <b>established in 2015</b>. The organisation is a registered society operating under the official Unique Entity Number <b>(UEN) T15SS0110K</b>. The society functions under the motto <b>"Building Relationships, Inspiring Dynamism and Generating Empathy Society" (BRIDGES)</b>. Its core mission is to facilitate meaningful interaction, communication, and goodwill across Singapore’s diverse cultural and racial landscape. From a strategic perspective, the society focuses on <b>promoting social integration and community resilience, particularly by assisting foreigners in navigating their orientation into Singaporean society</b>. By fostering a spirit of volunteerism and mutual understanding, Bridges Singapore seeks to build a more cohesive and inclusive community.</p>
+          <p style="margin-top:18px;">Bridges Singapore was <b>established in 2015</b>. The organisation is a registered society operating under the official Unique Entity Number <b>(UEN) T15SS0110K</b>.The name of the society can be meaningfully expanded to indicate its guiding objectives <b>"Building Relationships, Inspiring Dynamism and Generating Empathy Society" (BRIDGES)</b>. Its core mission is to facilitate meaningful interaction, communication, and goodwill across Singapore’s diverse cultural and racial landscape. From a strategic perspective, the society focuses on promoting social integration and community resilience, particularly by assisting foreigners in navigating their orientation into Singaporean society. By fostering a spirit of volunteerism and mutual understanding, Bridges Singapore seeks to build a more cohesive and inclusive community.
+</p>
         </div>
 
         <div style="margin-top:34px; padding-top:22px; border-top:1px solid rgba(32,51,64,0.12);">
@@ -693,7 +718,7 @@
           <div class="initiative-card-header">
             <span class="initiative-label">Impact 01</span>
             <h3>Oxygen Concentrator Drive</h3>
-            <p>During the COVID-19 crisis in India, Bridges used GoGetFunding to dispatch 104 oxygen concentrators, reaching 150 units in total to support critical medical needs.</p>
+            <p>During the COVID-19 crisis in India, the society utilised the GoGetFunding platform as a strategic tool for cross-border crisis intervention. The drive successfully over <br>150 units</br> to alleviate medical shortages and save lives.</p>
           </div>
           <div class="initiative-media-grid">
             <a class="initiative-image-slot" href="media/impacts/impact1/184373542_4625161634167176_1958728180867611222_n.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Oxygen Concentrator Drive image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(242,129,29,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact1/184373542_4625161634167176_1958728180867611222_n.jpg');"></a>
@@ -802,11 +827,11 @@
           <div class="initiative-card-header">
             <span class="initiative-label">Impact 10</span>
             <h3>Ehsaas-E-Sukoon</h3>
-            <p>Held on 1 August 2026 at Sindhu House, this devotional jamming evening brought together contemporary artists and instrumentalists for a soulful experience.</p>
+            <p>Held on 1 August 2026 at Sindhu House, this devotional Singing experience brought together contemporary artists and instrumentalists for a soulful experience.</p>
           </div>
           <div class="initiative-media-grid">
             <a class="initiative-image-slot" href="media/impacts/impact10/Screenshot 2026-09-26 141332.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Ehsaas-E-Sukoon image 1" style="--placeholder-bg: linear-gradient(135deg, rgba(148,100,180,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact10/Screenshot 2026-09-26 141332.jpg');"></a>
-            <a class="initiative-image-slot" href="media/impacts/impact10/Screenshot 2026-09-26 141522.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Ehsaas-E-Sukoon image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(235,157,74,0.10), rgba(255,255,255,0.18)), url('media/impacts/impact10/Screenshot 2026-09-26 141522.jpg');"></a>
+            <a class="initiative-image-slot" href="media/impacts/impact10/Screenshot 2026-09-26 141522.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Ehsaas-E-Sukoon image 2" style="--placeholder-bg: linear-gradient(135deg, rgba(235,157,74,0.10), rgba(32, 6, 6, 0.18)), url('media/impacts/impact10/Screenshot 2026-09-26 141522.jpg');"></a>
           </div>
         </article>
       </div>
@@ -875,16 +900,19 @@
 
         <p class="event-writeup"><strong>“Break the Stress Cycle”</strong> is designed as an accessible and practical one-day wellbeing experience for 05 December 2026, focused on an increasingly important community need — mental wellbeing and everyday stress. The programme will bring together expert-led conversations and experiential sessions covering areas such as stress and nervous-system regulation, nutrition and mood, movement, stillness, present-moment awareness and sustainable wellbeing practices.</p>
 
+        <a class="register-highlight" href="https://bit.ly/bridges_wellness" target="_blank" rel="noopener noreferrer">Register now</a>
+
         <!-- <a class="btn btn-outline" href="https://www.facebook.com/Bridgessg/posts/pfbid0a3Txc3Z1HcwXLWz3ZNdSU2uNnnLauBVAoeAH35ipvyNTn1PsUjJNKqsRMzLhhVwhl" target="_blank" rel="noopener">Open post on Facebook</a> -->
       </div>
 
       <div class="event-media-column">
-        <!-- Media is temporarily being re-uploaded. Details will be shared soon — stay tuned. -->
-        <div class="event-media-grid" aria-label="Event visuals" style="display:flex; align-items:center; justify-content:center; min-height:260px; padding:24px; background:rgba(255,255,255,0.35); border:1px solid rgba(32,51,64,0.12); border-radius:18px;">
-          <p style="margin:0; text-align:center; font-size:1.02rem; line-height:1.7; color:var(--ink);">
-            <strong>Media being refreshed.</strong><br>
-            Details will be shared soon — stay tuned.
-          </p>
+        <div class="event-media-grid" aria-label="Event visuals">
+          <a href="media/upcoming_events/dec2026_break_the_stress_by_bridges/break_the_stresscycle_by_bridges_dec2026_main.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Open event main poster">
+            <img src="media/upcoming_events/dec2026_break_the_stress_by_bridges/break_the_stresscycle_by_bridges_dec2026_main.jpeg" alt="Break the Stress Cycle event poster" loading="lazy">
+          </a>
+          <a href="media/upcoming_events/dec2026_break_the_stress_by_bridges/break_the_stresscycle_by_bridges_dec2026_schedule.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Open event schedule poster">
+            <img src="media/upcoming_events/dec2026_break_the_stress_by_bridges/break_the_stresscycle_by_bridges_dec2026_schedule.jpeg" alt="Break the Stress Cycle event schedule" loading="lazy">
+          </a>
         </div>
       </div>
 
