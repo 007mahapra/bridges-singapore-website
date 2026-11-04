@@ -379,6 +379,28 @@
   .event-feature-copy .event-writeup{
     margin-top:18px; font-size:1.02rem; line-height:1.7; color:var(--ink-soft);
   }
+  .event-details{
+    display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0 18px;
+    margin-top:20px; padding:6px 16px; border:1px solid var(--line);
+    border-radius:14px; background:rgba(255,255,255,0.78);
+  }
+  .event-detail{
+    display:flex; align-items:flex-start; gap:10px; min-width:0; padding:10px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .event-detail-wide{grid-column:1 / -1;}
+  .event-detail:last-child{border-bottom:0;}
+  .event-detail-icon{
+    display:grid; place-items:center; width:30px; height:30px; flex:none; border-radius:9px;
+    background:var(--cream-deep); font-size:0.98rem;
+  }
+  .event-detail-copy{min-width:0;}
+  .event-detail-label{
+    display:block; margin-bottom:3px; color:var(--ink-soft); font-size:0.66rem;
+    font-weight:800; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .event-detail-value{display:block; color:var(--ink); font-size:0.84rem; font-weight:700; line-height:1.5;}
+  .event-detail-value a{color:var(--blue); text-decoration-thickness:1px; text-underline-offset:3px;}
   .event-media-column{
     display:flex; justify-content:center; align-items:center;
   }
@@ -397,7 +419,7 @@
     width:fit-content; margin-top:22px; padding:12px 18px; border-radius:999px;
     background:linear-gradient(90deg, #fff4b8 0%, #ffd77a 40%, #ffc857 100%);
     border:1px solid rgba(132,81,0,0.18); color:#5b3700; font-size:0.78rem;
-    font-weight:800; letter-spacing:0.12em; text-transform:uppercase;
+    font-weight:800; letter-spacing:0.02em; text-transform:none;
     text-decoration:none; box-shadow:0 16px 28px -18px rgba(124,82,0,0.55);
     position:relative; overflow:hidden; animation:registerPulse 1.5s ease-in-out infinite;
   }
@@ -521,6 +543,8 @@
     .menu-toggle{display:block; z-index:41;}
     .nav .btn-primary{display:none;}
     .event-feature{gap:22px;}
+    .event-details{grid-template-columns:1fr; padding:4px 14px;}
+    .event-detail-wide{grid-column:auto;}
     .event-media-grid{grid-template-columns:1fr;}
     .event-media-grid img{width:100%; min-height:auto;}
     .past-events-grid{grid-template-columns:1fr;}
@@ -534,7 +558,7 @@
 <div class="launch-banner" id="launchBanner">
   <div class="launch-banner-inner">
     <span class="pulse-dot" aria-hidden="true"></span>
-    <span>Upcoming : Break the Stress Cycle - Dec 05 2026 - <a href="https://bit.ly/bridges_wellness" target="_blank" rel="noopener noreferrer" style="color:#fff; text-decoration:underline; font-weight:800;">Register now →</a></span>
+    <span>Upcoming : Break the Stress Cycle - Dec 05 2026 - <a href="https://forms.gle/Bsrg5S3C8WPWQ3SP9" target="_blank" rel="noopener noreferrer" style="color:#fff; text-decoration:underline; font-weight:800;">Register now →</a></span>
     <button class="launch-banner-close" id="bannerClose" aria-label="Dismiss announcement">✕</button>
   </div>
 </div>
@@ -894,13 +918,39 @@
   <section id="bridges-upcoming-event" class="band-cream-deep">
     <div class="wrap event-feature">
       <div class="event-feature-copy">
-        <span class="kicker">What's next</span>
-        <h2>Our upcoming event</h2>
-        <p style="margin-top:14px;">Here's what we've got coming up. Stay Tuned to our Facebook Page for the full details, RSVP and updates which will be shared soon.</p>
-
+        <span class="kicker">BRIDGES Singapore presents</span>
+        <h2>Break the Stress Cycle</h2>
+        <p style="margin-top:8px; color:var(--orange-deep); font-weight:800;">A Practical Wellbeing Experience</p>
         <p class="event-writeup"><strong>“Break the Stress Cycle”</strong> is designed as an accessible and practical one-day wellbeing experience for 05 December 2026, focused on an increasingly important community need — mental wellbeing and everyday stress. The programme will bring together expert-led conversations and experiential sessions covering areas such as stress and nervous-system regulation, nutrition and mood, movement, stillness, present-moment awareness and sustainable wellbeing practices.</p>
 
-        <a class="register-highlight" href="https://bit.ly/bridges_wellness" target="_blank" rel="noopener noreferrer">Register now</a>
+        <div class="event-details" aria-label="Event details">
+          <div class="event-detail">
+            <span class="event-detail-icon" aria-hidden="true">📅</span>
+            <div class="event-detail-copy"><span class="event-detail-label">Date</span><strong class="event-detail-value">Saturday, 5 December 2026</strong></div>
+          </div>
+          <div class="event-detail">
+            <span class="event-detail-icon" aria-hidden="true">⏰</span>
+            <div class="event-detail-copy"><span class="event-detail-label">Time</span><strong class="event-detail-value">10:30 AM – 4:30 PM</strong></div>
+          </div>
+          <div class="event-detail event-detail-wide">
+            <span class="event-detail-icon" aria-hidden="true">📍</span>
+            <div class="event-detail-copy"><span class="event-detail-label">Venue</span><strong class="event-detail-value">Lifelong Learning Institute, Event Hall 1-1, Level 1<br>11 Eunos Road 8, Singapore 408601 · <a href="https://maps.app.goo.gl/TLoofeB6tTZJ7iJVA" target="_blank" rel="noopener noreferrer">Open map ↗</a></strong></div>
+          </div>
+          <div class="event-detail">
+            <span class="event-detail-icon" aria-hidden="true">🎟️</span>
+            <div class="event-detail-copy"><span class="event-detail-label">Admission</span><strong class="event-detail-value">$15 per person<br>Lunch &amp; beverages included</strong></div>
+          </div>
+          <div class="event-detail">
+            <span class="event-detail-icon" aria-hidden="true">🔞</span>
+            <div class="event-detail-copy"><span class="event-detail-label">Who can attend</span><strong class="event-detail-value">Ages 18 and above</strong></div>
+          </div>
+          <div class="event-detail event-detail-wide">
+            <span class="event-detail-icon" aria-hidden="true">⏳</span>
+            <div class="event-detail-copy"><span class="event-detail-label">Registration &amp; enquiries</span><strong class="event-detail-value">Closes 30 November 2026 · Limited places available<br><a href="mailto:bridges.sg1@gmail.com">bridges.sg1@gmail.com</a></strong></div>
+          </div>
+        </div>
+
+        <a class="register-highlight" href="https://forms.gle/Bsrg5S3C8WPWQ3SP9" target="_blank" rel="noopener noreferrer">Register Now <span aria-hidden="true">↗</span></a>
 
         <!-- <a class="btn btn-outline" href="https://www.facebook.com/Bridgessg/posts/pfbid0a3Txc3Z1HcwXLWz3ZNdSU2uNnnLauBVAoeAH35ipvyNTn1PsUjJNKqsRMzLhhVwhl" target="_blank" rel="noopener">Open post on Facebook</a> -->
       </div>
